@@ -1,0 +1,239 @@
+@font-face {
+  font-family: 'mana';
+  src: url('fonts/MagicSymbols.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes popin {
+  0% {
+    transform: scale(.1);
+    opacity: 0;
+  }
+  90% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+body {
+  background: black;
+}
+
+.header {
+  color: #eeeeee;
+  text-align: center;
+  padding: 10%;
+
+  h2 {
+    color: #eeeeee;
+    font-weight: bold;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+
+  li.player {
+    animation-name: popin;
+    animation-duration: .25s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    padding: .5em;
+    position: relative;
+
+    input {
+      font-size: 1.25em;
+      padding: .125em .5em 0 .5em;
+      border-radius: .25em;
+      width: 100%;
+    }
+
+
+    .setup-row {
+      border: 1px solid #333333;
+      padding: .25em;
+      background: #ccccdd;
+      border-radius: .25em;
+      max-width: 90%;
+
+      &.actions {
+        position: absolute;
+        border: none;
+        border-top-left-radius: .25em;
+        border-color: transparent;
+        border-top: 1px solid #333333;
+        border-left: 1px solid #333333;
+        bottom: .75em;
+        padding: 0.125em 1em 0 1em;
+        left: 10.0625em;
+        background: #000000;
+
+        .btn { border-color: transparent; }
+      }
+    }
+
+    .color-setup-row {
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: -.25em;
+      width: 9.625em;
+      padding: .25em .8125em .5em .5em;
+      position: relative;
+
+      &:after {
+        height: .5em;
+        width: .5em;
+        background: #ccccdd;
+        top: -1px;
+        right: -0.25em;
+        position: absolute;
+        content: ' ';
+      }
+    }
+
+    .game {
+      position: relative;
+      background: #999999;
+      border: .1875em solid #666666;
+      border-radius: 1.5em .5em .5em 1.5em;
+      padding: .25em;
+
+      .warning-message {
+        color: red;
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: bold;
+      }
+
+      .score {
+        font-size: 2em;
+        font-weight: bold;
+        padding: .25em;
+        border: .0625em solid #666666;
+        border-radius: .75em;
+        width: 1.875em;
+        text-align: center;
+        background: #fff;
+        overflow-x: visible;
+        position: absolute;
+
+        &.danger {
+          color: red;
+        }
+      }
+
+      .deck-colors {
+        font-size: .875em;
+        clear: both;
+        margin-left: 4.5em;
+      }
+
+      .player-name {
+        font-size: 1.75em;
+        font-weight: 500;
+        color: #fff;
+        margin-left: 2.25em
+      }
+
+      &.eliminated {
+        .score {
+          background: transparent;
+          color: #bbbbbb;
+        }
+        .player-name { color: #bbbbbb; }
+        .subtract { display: none; }
+        .add { border-bottom-color: #bbbbbb; }
+      }
+
+      .actions {
+        position: absolute;
+        right: 1em;
+        top: 0;
+
+        .btn-shape {
+          height:1.25em;
+          border-left: 1.5em solid transparent;
+          border-right: 1.5em solid transparent;
+          width: 0;
+          padding: .125em;
+          box-shadow: 0em .0625em #666666;
+          cursor: pointer;
+
+          &:before {
+            position: absolute;
+            margin-left: -.25em;
+            font-size: 1.5em;
+            color: #999999;
+            font-weight: bold;
+          }
+
+          &.add {
+            border-bottom: 1.25em solid #ddd;
+
+            &:hover, &:active {
+              border-bottom-color: #fff;
+            }
+            &:before {
+              content: '+';
+            }
+          }
+
+          &.subtract {
+            margin-top: .25em;
+            border-top: 1.25em solid #ddd;
+            box-shadow: 0em -.0625em #666666;
+
+            &:hover, &:active {
+              border-top-color: #fff;
+            }
+
+            &:before {
+              content: '-';
+              margin-left: -.1875em;
+              bottom: .25em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.setup-actions {
+  clear: both;
+  padding: 1em;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.actions {
+  text-align: center;
+
+  .btn {
+    padding: 1px .5em;
+    margin-right: .5em;
+    border-radius: .25em;
+    border: 1px solid #eeeeee;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 500;
+    color: #eeeeee;
+
+    &:hover, &:active {
+      border-color: #ffffff;
+      background: #eeeeee;
+      color: #000000;
+    }
+  }
+
+  .delete { color: red; }
+}

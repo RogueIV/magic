@@ -1,0 +1,13 @@
+{
+  "name": "Magic",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "build",
+    "watch",
+    "sass"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

@@ -1,0 +1,306 @@
+<html>
+  <head>
+    <style>
+      @font-face {
+        font-family: 'mana';
+        src: url('fonts/MagicSymbols.ttf');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @keyframes popin {
+        0% {
+          transform: scale(.1);
+          opacity: 0;
+        }
+        90% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0px;
+      }
+
+      li.player {
+        clear: both;
+        animation-name: popin;
+        animation-duration: .25s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        padding: 10px;
+      }
+
+      li.player input {
+        font-size: 1.25em;
+        padding: .125em;
+        border-radius: .25em;
+        width: 100%;
+      }
+
+      .player .setup-row-container {
+        position: relative;
+      }
+
+      .player .setup-row {
+        border: 1px solid #333333;
+        padding: .25em;
+        background: #ccccdd;
+        border-radius: .25em;
+        max-width: 90%;
+      }
+
+      .player .color-setup-row {
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: -.25em;
+        width: auto;
+        max-width: 50%;
+        float:left;
+        padding: .25em .5em .375em .5em;
+        position: relative;
+      }
+      .player .color-setup-row:after {
+        height: .5em;
+        width: .5em;
+        background: #ccccdd;
+        top: -1px;
+        right: -0.25em;
+        position: absolute;
+        content: ' ';
+      }
+
+      .player .setup-row-container .actions {
+        position: absolute;
+        border-top-left-radius: .25em;
+        border-top: 1px solid #333333;
+        border-left: 1px solid #333333;
+        top: -1px;
+        padding: .25em 1em 0 1em;
+        left: 143px;
+        background: #ffffff;
+      }
+
+      .setup-actions {
+        clear: both;
+        padding: 1em;
+      }
+
+      .button {
+        cursor: pointer;
+      }
+      .actions .button {
+        padding: 1px .5em;
+        margin-right: .5em;
+        border-radius: .25em;
+        border: 1px solid transparent;
+        text-transform: uppercase;
+        font-size: 0.75em;
+        font-weight: 500;
+      }
+      .actions .button:hover, .actions .button:active {
+        border-color: #dddddd;
+        background: #eeeeee;
+      }
+      .actions .delete {
+        color: red;
+      }
+
+      .ms {
+        display: inline-block;
+        font-family: 'mana';
+        font-size: inherit;
+        line-height: 1em;
+        text-rendering: auto;
+        speak: none;
+        text-transform: none;
+        vertical-align: middle;
+        /* Better font rendering  */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      /**
+       * Mana cost styles */
+      .ms-cost {
+        background-color: #cccccc;
+        border-radius: 1.25em;
+        color: #666;
+        font-size: 1em;
+        width: 1.25em;
+        height: 1.25em;
+        line-height: 1.35em;
+        border: 1px solid #fff;
+      }
+      .ms-cost.selected {
+        color: #000;
+        border: 1px solid #333;
+      }
+      .ms-cost.ms-w.selected {
+        background-color: #F0F2C0;
+      }
+      .ms-cost.ms-u.selected {
+        background-color: #B5CDE3;
+      }
+      .ms-cost.ms-b.selected {
+        background-color: #ACA29A;
+      }
+      .ms-cost.ms-r.selected {
+        background-color: #DB8664;
+      }
+      .ms-cost.ms-g.selected {
+        background-color: #93B483;
+      }
+      .ms:before {
+        margin-left: 2px;;
+      }
+      .ms-w:before {
+        content: 'w';
+      }
+      .ms-u:before {
+        content: 'u';
+      }
+      .ms-b:before {
+        content: 'b';
+      }
+      .ms-r:before {
+        content: 'r';
+      }
+      .ms-g:before {
+        content: 'g';
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('MagicGame', function($scope) {
+      	$scope.players = [];
+        $scope.history = {};
+      	$scope.game = {};
+        $scope.state = 'menu';
+
+        var statelist = 'game|stats|menu|setup';
+
+        $scope.startGame = function() {
+          if($scope.game && $scope.players) {
+            $scope.players.forEach(function(player) {
+              player.score = 20;
+            });
+            $scope.game.inProgress = true;
+            $scope.goto('game');
+          }
+        };
+
+        $scope.newGame = function(players) {
+          $scope.players = players || [];
+          $scope.game = {
+            startDate: Date(),
+            winner: null,
+            inProgress: false
+          }
+
+          if(players) {
+            $scope.startGame();
+          } else {
+            $scope.goto('setup');
+          }
+        };
+
+        $scope.quitGame = function() {
+
+        };
+
+        $scope.addPlayer = function() {
+          $scope.players.push({
+            name: '',
+            color: {
+              hasBlack: false,
+              hasBlue: false,
+              hasWhite: false,
+              hasRed: false,
+              hasGreen: false
+            },
+            score: 0
+          });
+        };
+
+        $scope.deletePlayer = function(player) {
+          if($scope.players && player) {
+            $scope.players.splice($scope.players.indexOf(player), 1);
+          }
+        };
+
+        $scope.updateScore = function(player, change) {
+          if(player && change) {
+            player.score += change;
+          }
+        };
+
+        $scope.goto = function(state) {
+          $scope.state = statelist.indexOf(state) > -1 ? state : 'game';
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="MagicGame">
+        <h1>Test</h1>
+        <div class="menu" ng-show="state === 'menu'">
+          <div class="button" ng-click="newGame()">New Game</div>
+          <div class="button" ng-click="goto('stats')">View Statistics</div>
+          <div class="button" ng-show="canReplay" ng-click="newGame(players)">Play Again</div>
+          <div class="button" ng-show="game.inProgress" ng-click="quitGame()">Quit Game</div>
+        </div>
+        <div class="game" ng-show="state === 'game' && game.inProgress">
+          <ul>
+            <li class="player" ng-repeat="player in players">
+              <div class="score" ng-bind="player.score"></div>
+              <div class="deck-colors">
+                <i class="ms ms-b ms-cost selected" ng-show="player.color.hasBlack" title="Black"></i>
+                <i class="ms ms-u ms-cost selected" ng-show="player.color.hasBlue" title="Blue"></i>
+                <i class="ms ms-w ms-cost selected" ng-show="player.color.hasWhite" title="White"></i>
+                <i class="ms ms-r ms-cost selected" ng-show="player.color.hasRed" title="Red"></i>
+                <i class="ms ms-g ms-cost selected" ng-show="player.color.hasGreen" title="Green"></i>
+              </div>
+              <div class="player-name" ng-bind="player.name"></div>
+              <div class="actions" ng-if="game.inProgress">
+                <div class="button add" ng-click="updateScore(player, 1)">+</div>
+                <div class="button subtract" ng-click="updateScore(player, -1)">-</div>
+              </div>
+          </ul>
+        </div>
+        <div class="setup" ng-show="state === 'setup'">
+          <form name="playerForm">
+            <ul>
+              <li class="player player" ng-repeat="player in players">
+                <div class="setup-row">
+                  <input type="text" name="playerName" placeholder="Player Name" ng-model="player.name" required></input>
+                </div>
+                <div class="setup-row-container">
+                  <div class="setup-row color-setup-row">
+                    <i class="ms ms-b ms-cost button" ng-class="{selected: player.color.hasBlack}" ng-click="player.color.hasBlack = !player.color.hasBlack" title="Black"></i>
+                    <i class="ms ms-u ms-cost button" ng-class="{selected: player.color.hasBlue}" ng-click="player.color.hasBlue = !player.color.hasBlue" title="Blue"></i>
+                    <i class="ms ms-w ms-cost button" ng-class="{selected: player.color.hasWhite}" ng-click="player.color.hasWhite = !player.color.hasWhite" title="White"></i>
+                    <i class="ms ms-r ms-cost button" ng-class="{selected: player.color.hasRed}" ng-click="player.color.hasRed = !player.color.hasRed" title="Red"></i>
+                    <i class="ms ms-g ms-cost button" ng-class="{selected: player.color.hasGreen}" ng-click="player.color.hasGreen = !player.color.hasGreen" title="Green"></i>
+                  </div>
+                  <div class="actions">
+                    <div class="button delete" ng-click="deletePlayer(player)">delete</div>
+                  </div>
+                </div>
+            </ul>
+          </form>
+          <div class="setup-actions">
+            <div class="button" ng-click="addPlayer()">Add Player</div>
+            <div class="button" ng-click="startGame()" ng-show="players && players.length > 1 && playerForm.playerName.$valid">Start Game</div>
+        </div>
+        </div>
+    </div>
+  </body>
+</html>

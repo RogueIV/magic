@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'mana';
+  src: url('/fonts/MagicSymbols.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana {
+  display: inline-block;
+  font-family: 'mana';
+  font-size: inherit;
+  line-height: 1em;
+  text-rendering: auto;
+  speak: none;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.white:before { content: 'w'; }
+  &.black:before { content: 'u'; }
+  &.blue:before { content: 'b'; }
+  &.red:before { content: 'r'; }
+  &.green:before { content: 'g'; }
+
+  &.mana-token {
+    background-color: #cccccc;
+    border-radius: 1.25em;
+    color: #666;
+    font-size: 1.125em;
+    width: 1.25em;
+    height: 1.25em;
+    line-height: 1.35em;
+    border: 1px solid #fff;
+
+    &:before {
+      margin-left: 2px;
+    }
+    &.selected {
+      color: #000;
+      border: 1px solid #333;
+    }
+
+    &.white.selected { background-color: #F0F2C0; }
+    &.black.selected { background-color: #B5CDE3; }
+    &.blue.selected { background-color: #ACA29A; }
+    &.red.selected { background-color: #DB8664; }
+    &.green.selected { background-color: #93B483; }
+  }
+}

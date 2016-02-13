@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html data-breakpoints="" ng-app="magic">
+<head>
+  <base href="$$base_url$$" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta content="Magic Game Counter" name="description" />
+  <meta content="width=device-width,initial-scale=1.0" name="viewport" />
+  <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+  <link href="images/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="images/apple-touch-icon-precomposed.png" rel="apple-touch-icon" />
+  <title ng-bind="pageTitle">Magic Counter</title>
+
+  <!-- compiled css output -->
+  <link href="css/style.css?rev=cache-bust-me" rel="stylesheet" />
+  <link href="css/ionic.app.css?rev=cache-bust-me" rel="stylesheet" />
+
+  <!-- 3rd party compiled libraries -->
+  <script src="js/libraries.js?rev=cache-bust-me"></script>
+
+  <!-- ng-cordova angular cordova adapter -->
+  <!-- Include ng-cordova.js before cordova.js and after your AngularJS / Ionic file (libraries.js) (since ngCordova depends on AngularJS). -->
+  <script src="js/ng-cordova.js?rev=cache-bust-me"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/modules.js?rev=cache-bust-me"></script>
+  <script src="js/application.js?rev=cache-bust-me"></script>
+  <script src="js/templates.js?rev=cache-bust-me"></script>
+</head>
+<body>
+    <div id="wrapper">
+      <div ui-view></div>
+    </div>
+
+    <!-- Menu Toggle Script -->
+    <script>
+      $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+    </script>
+
+    <div id="detect-breakpoints">
+        <div class="breakpoint device-xs visible-xs"></div>
+        <div class="breakpoint device-sm visible-sm"></div>
+        <div class="breakpoint device-md visible-md"></div>
+        <div class="breakpoint device-lg visible-lg"></div>
+    </div>
+</body>
+</html>

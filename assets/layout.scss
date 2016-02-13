@@ -1,0 +1,116 @@
+@font-face {
+  font-family: 'mana';
+  src: url('fonts/MagicSymbols.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes popin {
+  0% {
+    transform: scale(.1);
+    opacity: 0;
+  }
+  90% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+
+  li.player {
+    clear: both;
+    animation-name: popin;
+    animation-duration: .25s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    padding: 10px;
+
+    input {
+      font-size: 1.25em;
+      padding: .125em;
+      border-radius: .25em;
+      width: 100%;
+    }
+
+    .setup-row-container {
+      position: relative;
+
+      .actions {
+        position: absolute;
+        border-top-left-radius: .25em;
+        border-top: 1px solid #333333;
+        border-left: 1px solid #333333;
+        top: -1px;
+        padding: .25em 1em 0 1em;
+        left: 143px;
+        background: #ffffff;
+      }
+
+    }
+
+    .setup-row {
+      border: 1px solid #333333;
+      padding: .25em;
+      background: #ccccdd;
+      border-radius: .25em;
+      max-width: 90%;
+    }
+
+    .color-setup-row {
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: -.25em;
+      width: auto;
+      max-width: 50%;
+      float:left;
+      padding: .25em .5em .375em .5em;
+      position: relative;
+
+      &:after {
+        height: .5em;
+        width: .5em;
+        background: #ccccdd;
+        top: -1px;
+        right: -0.25em;
+        position: absolute;
+        content: ' ';
+      }
+    }
+  }
+}
+
+.setup-actions {
+  clear: both;
+  padding: 1em;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.actions {
+  .button {
+    padding: 1px .5em;
+    margin-right: .5em;
+    border-radius: .25em;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 500;
+
+    &:hover, &:active {
+      border-color: #dddddd;
+      background: #eeeeee;
+    }
+  }
+
+  .delete { color: red; }
+}

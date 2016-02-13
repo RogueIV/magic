@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'mana';
+  src: url("fonts/MagicSymbols.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@keyframes popin {
+  0% {
+    transform: scale(0.1);
+    opacity: 0; }
+  90% {
+    transform: scale(1.1);
+    opacity: 1; }
+  100% {
+    transform: scale(1);
+    opacity: 1; } }
+
+body {
+  background: black; }
+
+.header {
+  color: #eeeeee;
+  text-align: center;
+  padding: 10%; }
+  .header h2 {
+    color: #eeeeee;
+    font-weight: bold; }
+
+ul {
+  list-style: none;
+  padding: 0; }
+  ul li.player {
+    animation-name: popin;
+    animation-duration: .25s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    padding: .5em;
+    position: relative; }
+    ul li.player input {
+      font-size: 1.25em;
+      padding: .125em .5em 0 .5em;
+      border-radius: .25em;
+      width: 100%; }
+    ul li.player .setup-row {
+      border: 1px solid #333333;
+      padding: .25em;
+      background: #ccccdd;
+      border-radius: .25em;
+      max-width: 90%; }
+      ul li.player .setup-row.actions {
+        position: absolute;
+        border: none;
+        border-top-left-radius: .25em;
+        border-color: transparent;
+        border-top: 1px solid #333333;
+        border-left: 1px solid #333333;
+        bottom: .75em;
+        padding: 0.125em 1em 0 1em;
+        left: 10.0625em;
+        background: #000000; }
+        ul li.player .setup-row.actions .btn {
+          border-color: transparent; }
+    ul li.player .color-setup-row {
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: -.25em;
+      width: 9.625em;
+      padding: .25em .8125em .5em .5em;
+      position: relative; }
+      ul li.player .color-setup-row:after {
+        height: .5em;
+        width: .5em;
+        background: #ccccdd;
+        top: -1px;
+        right: -0.25em;
+        position: absolute;
+        content: ' '; }
+    ul li.player .game {
+      position: relative;
+      background: #999999;
+      border: .1875em solid #666666;
+      border-radius: 1.5em .5em .5em 1.5em;
+      padding: .25em; }
+      ul li.player .game .warning-message {
+        color: red;
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: bold; }
+      ul li.player .game .score {
+        font-size: 2em;
+        font-weight: bold;
+        padding: .25em;
+        border: .0625em solid #666666;
+        border-radius: .75em;
+        width: 1.875em;
+        text-align: center;
+        background: #fff;
+        overflow-x: visible;
+        position: absolute; }
+        ul li.player .game .score.danger {
+          color: red; }
+      ul li.player .game .deck-colors {
+        font-size: .875em;
+        clear: both;
+        margin-left: 4.5em; }
+      ul li.player .game .player-name {
+        font-size: 1.75em;
+        font-weight: 500;
+        color: #fff;
+        margin-left: 2.25em; }
+      ul li.player .game.eliminated .score {
+        background: transparent;
+        color: #bbbbbb; }
+      ul li.player .game.eliminated .player-name {
+        color: #bbbbbb; }
+      ul li.player .game.eliminated .subtract {
+        display: none; }
+      ul li.player .game.eliminated .add {
+        border-bottom-color: #bbbbbb; }
+      ul li.player .game .actions {
+        position: absolute;
+        right: 1em;
+        top: 0; }
+        ul li.player .game .actions .btn-shape {
+          height: 1.25em;
+          border-left: 1.5em solid transparent;
+          border-right: 1.5em solid transparent;
+          width: 0;
+          padding: .125em;
+          box-shadow: 0em .0625em #666666;
+          cursor: pointer; }
+          ul li.player .game .actions .btn-shape:before {
+            position: absolute;
+            margin-left: -.25em;
+            font-size: 1.5em;
+            color: #999999;
+            font-weight: bold; }
+          ul li.player .game .actions .btn-shape.add {
+            border-bottom: 1.25em solid #ddd; }
+            ul li.player .game .actions .btn-shape.add:hover, ul li.player .game .actions .btn-shape.add:active {
+              border-bottom-color: #fff; }
+            ul li.player .game .actions .btn-shape.add:before {
+              content: '+'; }
+          ul li.player .game .actions .btn-shape.subtract {
+            margin-top: .25em;
+            border-top: 1.25em solid #ddd;
+            box-shadow: 0em -.0625em #666666; }
+            ul li.player .game .actions .btn-shape.subtract:hover, ul li.player .game .actions .btn-shape.subtract:active {
+              border-top-color: #fff; }
+            ul li.player .game .actions .btn-shape.subtract:before {
+              content: '-';
+              margin-left: -.1875em;
+              bottom: .25em; }
+
+.setup-actions {
+  clear: both;
+  padding: 1em; }
+
+.btn {
+  cursor: pointer; }
+
+.actions {
+  text-align: center; }
+  .actions .btn {
+    padding: 1px .5em;
+    margin-right: .5em;
+    border-radius: .25em;
+    border: 1px solid #eeeeee;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 500;
+    color: #eeeeee; }
+    .actions .btn:hover, .actions .btn:active {
+      border-color: #ffffff;
+      background: #eeeeee;
+      color: #000000; }
+  .actions .delete {
+    color: red; }
+
+@font-face {
+  font-family: 'mana';
+  src: url("/fonts/MagicSymbols.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+.mana {
+  display: inline-block;
+  font-family: 'mana';
+  font-size: inherit;
+  line-height: 1em;
+  text-rendering: auto;
+  speak: none;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  .mana.white:before {
+    content: 'w'; }
+  .mana.black:before {
+    content: 'u'; }
+  .mana.blue:before {
+    content: 'b'; }
+  .mana.red:before {
+    content: 'r'; }
+  .mana.green:before {
+    content: 'g'; }
+  .mana.mana-token {
+    background-color: #cccccc;
+    border-radius: 1.25em;
+    color: #666;
+    font-size: 1.125em;
+    width: 1.25em;
+    height: 1.25em;
+    line-height: 1.35em;
+    border: 1px solid #fff; }
+    .mana.mana-token:before {
+      margin-left: 2px; }
+    .mana.mana-token.selected {
+      color: #000;
+      border: 1px solid #333; }
+    .mana.mana-token.white.selected {
+      background-color: #F0F2C0; }
+    .mana.mana-token.black.selected {
+      background-color: #B5CDE3; }
+    .mana.mana-token.blue.selected {
+      background-color: #ACA29A; }
+    .mana.mana-token.red.selected {
+      background-color: #DB8664; }
+    .mana.mana-token.green.selected {
+      background-color: #93B483; }

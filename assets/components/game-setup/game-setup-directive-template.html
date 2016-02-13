@@ -1,0 +1,16 @@
+<div id="game-setup">
+  <form name="playerForm">
+    <ul>
+      <li class="player" ng-repeat="player in playerService.players">
+          <player data="player" edit=true></player>
+          <div class="actions setup-row">
+            <div class="btn delete" ng-click="deletePlayer($index)">delete</div>
+          </div>
+      </li>
+    </ul>
+  </form>
+  <div class="actions">
+    <div class="btn" ng-click="addPlayers()">Add Player</div>
+    <div class="btn" ui-sref="game" ng-show="hasValidPlayers">Start Game</div>
+  </div>
+</div>
